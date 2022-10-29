@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JakartaEE-Clone-Simplon:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>JakartaEE-Clone-Simplon</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="JakartaEE-Clone-Simplon-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="JakartaEE-Clone-Simplon:war exploded" />
+    </root>
+  </artifact>
+</component>
