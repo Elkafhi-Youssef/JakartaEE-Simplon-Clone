@@ -1,4 +1,4 @@
-package com.simplon.jakartaeeclonesimplon;
+package com.simplon.jakartaeeclonesimplon.controller;
 
 import java.io.*;
 
