@@ -5,5 +5,17 @@
              version="3.0">
     <persistence-unit name="default">
 
+        <class>com.simplon.jakartaeeclonesimplon.entity.AdminsEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.BriefStudentEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.BriefsEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.PromosEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.StudentsEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.TrainersEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/jeesimplon"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="youssef1999"/>
+        </properties>
     </persistence-unit>
 </persistence>
