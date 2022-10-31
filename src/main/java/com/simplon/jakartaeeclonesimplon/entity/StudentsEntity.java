@@ -30,12 +30,6 @@ public class StudentsEntity {
     private Integer promoId;
     @OneToMany(mappedBy = "studentsByStudentId")
     private Collection<BriefStudentEntity> briefStudentsByStudentId;
-    @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
-    private TrainersEntity trainersByTrainerId;
-    @ManyToOne
-    @JoinColumn(name = "promo_id", referencedColumnName = "promo_id")
-    private PromosEntity promosByPromoId;
 
     public int getStudentId() {
         return studentId;
@@ -104,21 +98,5 @@ public class StudentsEntity {
 
     public void setBriefStudentsByStudentId(Collection<BriefStudentEntity> briefStudentsByStudentId) {
         this.briefStudentsByStudentId = briefStudentsByStudentId;
-    }
-
-    public TrainersEntity getTrainersByTrainerId() {
-        return trainersByTrainerId;
-    }
-
-    public void setTrainersByTrainerId(TrainersEntity trainersByTrainerId) {
-        this.trainersByTrainerId = trainersByTrainerId;
-    }
-
-    public PromosEntity getPromosByPromoId() {
-        return promosByPromoId;
-    }
-
-    public void setPromosByPromoId(PromosEntity promosByPromoId) {
-        this.promosByPromoId = promosByPromoId;
     }
 }

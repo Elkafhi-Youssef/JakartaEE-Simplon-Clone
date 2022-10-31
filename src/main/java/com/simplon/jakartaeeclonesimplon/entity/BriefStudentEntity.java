@@ -16,12 +16,6 @@ public class BriefStudentEntity {
     @Id
     @Column(name = "student_id")
     private int studentId;
-    @ManyToOne
-    @JoinColumn(name = "brief_id", referencedColumnName = "brief_id", nullable = false)
-    private BriefsEntity briefsByBriefId;
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
-    private StudentsEntity studentsByStudentId;
 
     public int getBriefId() {
         return briefId;
@@ -50,21 +44,5 @@ public class BriefStudentEntity {
     @Override
     public int hashCode() {
         return Objects.hash(briefId, studentId);
-    }
-
-    public BriefsEntity getBriefsByBriefId() {
-        return briefsByBriefId;
-    }
-
-    public void setBriefsByBriefId(BriefsEntity briefsByBriefId) {
-        this.briefsByBriefId = briefsByBriefId;
-    }
-
-    public StudentsEntity getStudentsByStudentId() {
-        return studentsByStudentId;
-    }
-
-    public void setStudentsByStudentId(StudentsEntity studentsByStudentId) {
-        this.studentsByStudentId = studentsByStudentId;
     }
 }

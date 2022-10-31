@@ -11,16 +11,7 @@ services:
       - './db:/usr/local/src/'
     ports:
       - '5432:5432'
-  pgadmins:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: 'me@simplon.com'
-      PGADMIN_DEFAULT_PASSWORD: 'secret'
-    ports:
-      - '8888:80'
-    volumes:
-      - 'pgadmin:/var/lib/pgadmin'
+
 
 volumes:
   db:
-  pgadmin:

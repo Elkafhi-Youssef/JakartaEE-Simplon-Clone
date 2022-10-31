@@ -33,7 +33,7 @@ public class TrainersEntity {
     private Timestamp lastLogin;
     @OneToMany(mappedBy = "trainersByTrainerId")
     private Collection<BriefsEntity> briefsByTrainerId;
-    @OneToMany(mappedBy = "trainersByTrainerId")
+    @OneToOne(mappedBy = "trainersByTrainerId")
     private Collection<PromosEntity> promosByTrainerId;
     @OneToMany(mappedBy = "trainersByTrainerId")
     private Collection<StudentsEntity> studentsByTrainerId;

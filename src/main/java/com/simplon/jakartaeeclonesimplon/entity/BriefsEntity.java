@@ -36,9 +36,6 @@ public class BriefsEntity {
     private int trainerId;
     @OneToMany(mappedBy = "briefsByBriefId")
     private Collection<BriefStudentEntity> briefStudentsByBriefId;
-    @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", nullable = false)
-    private TrainersEntity trainersByTrainerId;
 
     public int getBriefId() {
         return briefId;
@@ -123,13 +120,5 @@ public class BriefsEntity {
 
     public void setBriefStudentsByBriefId(Collection<BriefStudentEntity> briefStudentsByBriefId) {
         this.briefStudentsByBriefId = briefStudentsByBriefId;
-    }
-
-    public TrainersEntity getTrainersByTrainerId() {
-        return trainersByTrainerId;
-    }
-
-    public void setTrainersByTrainerId(TrainersEntity trainersByTrainerId) {
-        this.trainersByTrainerId = trainersByTrainerId;
     }
 }

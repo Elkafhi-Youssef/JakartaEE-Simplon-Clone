@@ -22,9 +22,6 @@ public class PromosEntity {
     @Basic
     @Column(name = "trainer_id")
     private Integer trainerId;
-    @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
-    private TrainersEntity trainersByTrainerId;
     @OneToMany(mappedBy = "promosByPromoId")
     private Collection<StudentsEntity> studentsByPromoId;
 
@@ -71,14 +68,6 @@ public class PromosEntity {
     @Override
     public int hashCode() {
         return Objects.hash(promoId, promoName, createdOn, trainerId);
-    }
-
-    public TrainersEntity getTrainersByTrainerId() {
-        return trainersByTrainerId;
-    }
-
-    public void setTrainersByTrainerId(TrainersEntity trainersByTrainerId) {
-        this.trainersByTrainerId = trainersByTrainerId;
     }
 
     public Collection<StudentsEntity> getStudentsByPromoId() {
