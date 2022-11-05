@@ -6,8 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "admins", schema = "public", catalog = "jeesimplon")
-public class AdminsEntity {
+public class Admins {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "admin_id")
@@ -91,8 +90,8 @@ public class AdminsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdminsEntity that = (AdminsEntity) o;
-        return adminId == that.adminId && Objects.equals(username, that.username) && Objects.equals(psswd, that.psswd) && Objects.equals(email, that.email) && Objects.equals(adminImage, that.adminImage) && Objects.equals(createdOn, that.createdOn) && Objects.equals(lastLogin, that.lastLogin);
+        Admins admins = (Admins) o;
+        return adminId == admins.adminId && Objects.equals(username, admins.username) && Objects.equals(psswd, admins.psswd) && Objects.equals(email, admins.email) && Objects.equals(adminImage, admins.adminImage) && Objects.equals(createdOn, admins.createdOn) && Objects.equals(lastLogin, admins.lastLogin);
     }
 
     @Override

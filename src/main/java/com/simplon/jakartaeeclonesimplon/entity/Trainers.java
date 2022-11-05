@@ -7,8 +7,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "trainers", schema = "public", catalog = "jeesimplon")
-public class TrainersEntity {
+public class Trainers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "trainer_id")
@@ -31,12 +30,13 @@ public class TrainersEntity {
     @Basic
     @Column(name = "last_login")
     private Timestamp lastLogin;
+    @Basic
+    @Column(name = "delete_at")
+    private Timestamp deleteAt;
     @OneToMany(mappedBy = "trainersByTrainerId")
-    private Collection<BriefsEntity> briefsByTrainerId;
-    @OneToOne(mappedBy = "trainersByTrainerId")
-    private Collection<PromosEntity> promosByTrainerId;
+    private Collection<Briefs> briefsByTrainerId;
     @OneToMany(mappedBy = "trainersByTrainerId")
-    private Collection<StudentsEntity> studentsByTrainerId;
+    private Collection<Promos> promosByTrainerId;
 
     public int getTrainerId() {
         return trainerId;
@@ -94,40 +94,40 @@ public class TrainersEntity {
         this.lastLogin = lastLogin;
     }
 
+    public Timestamp getDeleteAt() {
+        return deleteAt;
+    }
+
+    public void setDeleteAt(Timestamp deleteAt) {
+        this.deleteAt = deleteAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TrainersEntity that = (TrainersEntity) o;
-        return trainerId == that.trainerId && Objects.equals(username, that.username) && Objects.equals(psswd, that.psswd) && Objects.equals(email, that.email) && Objects.equals(trainerImage, that.trainerImage) && Objects.equals(createdOn, that.createdOn) && Objects.equals(lastLogin, that.lastLogin);
+        Trainers trainers = (Trainers) o;
+        return trainerId == trainers.trainerId && Objects.equals(username, trainers.username) && Objects.equals(psswd, trainers.psswd) && Objects.equals(email, trainers.email) && Objects.equals(trainerImage, trainers.trainerImage) && Objects.equals(createdOn, trainers.createdOn) && Objects.equals(lastLogin, trainers.lastLogin) && Objects.equals(deleteAt, trainers.deleteAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainerId, username, psswd, email, trainerImage, createdOn, lastLogin);
+        return Objects.hash(trainerId, username, psswd, email, trainerImage, createdOn, lastLogin, deleteAt);
     }
 
-    public Collection<BriefsEntity> getBriefsByTrainerId() {
+    public Collection<Briefs> getBriefsByTrainerId() {
         return briefsByTrainerId;
     }
 
-    public void setBriefsByTrainerId(Collection<BriefsEntity> briefsByTrainerId) {
+    public void setBriefsByTrainerId(Collection<Briefs> briefsByTrainerId) {
         this.briefsByTrainerId = briefsByTrainerId;
     }
 
-    public Collection<PromosEntity> getPromosByTrainerId() {
+    public Collection<Promos> getPromosByTrainerId() {
         return promosByTrainerId;
     }
 
-    public void setPromosByTrainerId(Collection<PromosEntity> promosByTrainerId) {
+    public void setPromosByTrainerId(Collection<Promos> promosByTrainerId) {
         this.promosByTrainerId = promosByTrainerId;
-    }
-
-    public Collection<StudentsEntity> getStudentsByTrainerId() {
-        return studentsByTrainerId;
-    }
-
-    public void setStudentsByTrainerId(Collection<StudentsEntity> studentsByTrainerId) {
-        this.studentsByTrainerId = studentsByTrainerId;
     }
 }

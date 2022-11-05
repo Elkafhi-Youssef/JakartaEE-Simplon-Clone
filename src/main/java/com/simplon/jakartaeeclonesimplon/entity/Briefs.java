@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "briefs", schema = "public", catalog = "jeesimplon")
-public class BriefsEntity {
+public class Briefs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "brief_id")
@@ -19,6 +20,9 @@ public class BriefsEntity {
     @Basic
     @Column(name = "description")
     private String description;
+    @Basic
+    @Column(name = "image")
+    private String image;
     @Basic
     @Column(name = "date_started")
     private Date dateStarted;
@@ -35,7 +39,10 @@ public class BriefsEntity {
     @Column(name = "trainer_id")
     private int trainerId;
     @OneToMany(mappedBy = "briefsByBriefId")
-    private Collection<BriefStudentEntity> briefStudentsByBriefId;
+    private Collection<Briefstudent> briefstudentsByBriefId;
+
+    @ManyToMany(mappedBy = "students")
+    private Set<Students> employees = new HashSet<>();
 
     public int getBriefId() {
         return briefId;
@@ -59,6 +66,14 @@ public class BriefsEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Date getDateStarted() {
@@ -105,20 +120,20 @@ public class BriefsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BriefsEntity that = (BriefsEntity) o;
-        return briefId == that.briefId && trainerId == that.trainerId && Objects.equals(briefTitle, that.briefTitle) && Objects.equals(description, that.description) && Objects.equals(dateStarted, that.dateStarted) && Objects.equals(dateEnd, that.dateEnd) && Objects.equals(technologies, that.technologies) && Objects.equals(repository, that.repository);
+        Briefs briefs = (Briefs) o;
+        return briefId == briefs.briefId && trainerId == briefs.trainerId && Objects.equals(briefTitle, briefs.briefTitle) && Objects.equals(description, briefs.description) && Objects.equals(image, briefs.image) && Objects.equals(dateStarted, briefs.dateStarted) && Objects.equals(dateEnd, briefs.dateEnd) && Objects.equals(technologies, briefs.technologies) && Objects.equals(repository, briefs.repository);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(briefId, briefTitle, description, dateStarted, dateEnd, technologies, repository, trainerId);
+        return Objects.hash(briefId, briefTitle, description, image, dateStarted, dateEnd, technologies, repository, trainerId);
     }
 
-    public Collection<BriefStudentEntity> getBriefStudentsByBriefId() {
-        return briefStudentsByBriefId;
+    public Collection<Briefstudent> getBriefstudentsByBriefId() {
+        return briefstudentsByBriefId;
     }
 
-    public void setBriefStudentsByBriefId(Collection<BriefStudentEntity> briefStudentsByBriefId) {
-        this.briefStudentsByBriefId = briefStudentsByBriefId;
+    public void setBriefstudentsByBriefId(Collection<Briefstudent> briefstudentsByBriefId) {
+        this.briefstudentsByBriefId = briefstudentsByBriefId;
     }
 }
