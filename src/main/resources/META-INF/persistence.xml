@@ -4,12 +4,12 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="default">
-        <class>com.simplon.jakartaeeclonesimplon.entity.AdminsEntity</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.BriefStudentEntity</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.BriefsEntity</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.PromosEntity</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.StudentsEntity</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.TrainersEntity</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Admins</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Briefs</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Briefstudent</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Promos</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Students</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Trainers</class>
 
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/jeesimplon"/>

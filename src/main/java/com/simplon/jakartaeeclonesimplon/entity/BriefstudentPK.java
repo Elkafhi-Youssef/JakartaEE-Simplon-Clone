@@ -1,20 +1,21 @@
 package com.simplon.jakartaeeclonesimplon.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "brief_student", schema = "public", catalog = "jeesimplon")
-@IdClass(BriefStudentEntityPK.class)
-public class BriefStudentEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+public class BriefstudentPK implements Serializable {
     @Column(name = "brief_id")
-    private int briefId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int briefId;
     @Column(name = "student_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
 
     public int getBriefId() {
@@ -37,7 +38,7 @@ public class BriefStudentEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BriefStudentEntity that = (BriefStudentEntity) o;
+        BriefstudentPK that = (BriefstudentPK) o;
         return briefId == that.briefId && studentId == that.studentId;
     }
 
