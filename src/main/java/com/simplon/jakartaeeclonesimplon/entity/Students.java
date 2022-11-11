@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Students {
@@ -23,12 +24,10 @@ public class Students {
     @Basic
     @Column(name = "student_image")
     private String studentImage;
-    @Basic
-    @Column(name = "created_on")
-    private Timestamp createdOn;
+
     @Basic
     @Column(name = "delete_at")
-    private Timestamp deleteAt;
+    private Date deleteAt;
     @Basic
     @Column(name = "promo_id")
     private Integer promoId;
@@ -78,15 +77,7 @@ public class Students {
         this.studentImage = studentImage;
     }
 
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Timestamp getDeleteAt() {
+    public Date getDeleteAt() {
         return deleteAt;
     }
 
@@ -110,7 +101,6 @@ public class Students {
                 ", psswd='" + psswd + '\'' +
                 ", email='" + email + '\'' +
                 ", studentImage='" + studentImage + '\'' +
-                ", createdOn=" + createdOn +
                 ", deleteAt=" + deleteAt +
                 ", promoId=" + promoId +
                 ", deliversByStudentId=" + deliversByStudentId +
@@ -131,7 +121,6 @@ public class Students {
         if (email != null ? !email.equals(students.email) : students.email != null) return false;
         if (studentImage != null ? !studentImage.equals(students.studentImage) : students.studentImage != null)
             return false;
-        if (createdOn != null ? !createdOn.equals(students.createdOn) : students.createdOn != null) return false;
         if (deleteAt != null ? !deleteAt.equals(students.deleteAt) : students.deleteAt != null) return false;
         if (promoId != null ? !promoId.equals(students.promoId) : students.promoId != null) return false;
 
@@ -145,7 +134,6 @@ public class Students {
         result = 31 * result + (psswd != null ? psswd.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (studentImage != null ? studentImage.hashCode() : 0);
-        result = 31 * result + (createdOn != null ? createdOn.hashCode() : 0);
         result = 31 * result + (deleteAt != null ? deleteAt.hashCode() : 0);
         result = 31 * result + (promoId != null ? promoId.hashCode() : 0);
         return result;
