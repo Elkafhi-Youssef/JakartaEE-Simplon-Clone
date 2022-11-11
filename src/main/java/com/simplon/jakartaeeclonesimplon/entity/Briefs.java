@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Briefs {
@@ -38,11 +35,17 @@ public class Briefs {
     @Basic
     @Column(name = "trainer_id")
     private int trainerId;
+    @Basic
+    @Column(name = "promo_id")
+    private int promoId;
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", nullable = false, insertable = false, updatable =false)
+    private Trainers trainersByTrainerId;
+    @ManyToOne
+    @JoinColumn(name = "promo_id", referencedColumnName = "promo_id", nullable = false , insertable = false, updatable =false)
+    private Promos promosByPromoId;
     @OneToMany(mappedBy = "briefsByBriefId")
-    private Collection<Briefstudent> briefstudentsByBriefId;
-
-    @ManyToMany(mappedBy = "students")
-    private Set<Students> employees = new HashSet<>();
+    private Collection<Delivers> deliversByBriefId;
 
     public int getBriefId() {
         return briefId;
@@ -116,24 +119,72 @@ public class Briefs {
         this.trainerId = trainerId;
     }
 
+    public int getPromoId() {
+        return promoId;
+    }
+
+    public void setPromoId(int promoId) {
+        this.promoId = promoId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Briefs briefs = (Briefs) o;
-        return briefId == briefs.briefId && trainerId == briefs.trainerId && Objects.equals(briefTitle, briefs.briefTitle) && Objects.equals(description, briefs.description) && Objects.equals(image, briefs.image) && Objects.equals(dateStarted, briefs.dateStarted) && Objects.equals(dateEnd, briefs.dateEnd) && Objects.equals(technologies, briefs.technologies) && Objects.equals(repository, briefs.repository);
+
+        if (briefId != briefs.briefId) return false;
+        if (trainerId != briefs.trainerId) return false;
+        if (promoId != briefs.promoId) return false;
+        if (briefTitle != null ? !briefTitle.equals(briefs.briefTitle) : briefs.briefTitle != null) return false;
+        if (description != null ? !description.equals(briefs.description) : briefs.description != null) return false;
+        if (image != null ? !image.equals(briefs.image) : briefs.image != null) return false;
+        if (dateStarted != null ? !dateStarted.equals(briefs.dateStarted) : briefs.dateStarted != null) return false;
+        if (dateEnd != null ? !dateEnd.equals(briefs.dateEnd) : briefs.dateEnd != null) return false;
+        if (technologies != null ? !technologies.equals(briefs.technologies) : briefs.technologies != null)
+            return false;
+        if (repository != null ? !repository.equals(briefs.repository) : briefs.repository != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(briefId, briefTitle, description, image, dateStarted, dateEnd, technologies, repository, trainerId);
+        int result = briefId;
+        result = 31 * result + (briefTitle != null ? briefTitle.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (dateStarted != null ? dateStarted.hashCode() : 0);
+        result = 31 * result + (dateEnd != null ? dateEnd.hashCode() : 0);
+        result = 31 * result + (technologies != null ? technologies.hashCode() : 0);
+        result = 31 * result + (repository != null ? repository.hashCode() : 0);
+        result = 31 * result + trainerId;
+        result = 31 * result + promoId;
+        return result;
     }
 
-    public Collection<Briefstudent> getBriefstudentsByBriefId() {
-        return briefstudentsByBriefId;
+    public Trainers getTrainersByTrainerId() {
+        return trainersByTrainerId;
     }
 
-    public void setBriefstudentsByBriefId(Collection<Briefstudent> briefstudentsByBriefId) {
-        this.briefstudentsByBriefId = briefstudentsByBriefId;
+    public void setTrainersByTrainerId(Trainers trainersByTrainerId) {
+        this.trainersByTrainerId = trainersByTrainerId;
+    }
+
+    public Promos getPromosByPromoId() {
+        return promosByPromoId;
+    }
+
+    public void setPromosByPromoId(Promos promosByPromoId) {
+        this.promosByPromoId = promosByPromoId;
+    }
+
+    public Collection<Delivers> getDeliversByBriefId() {
+        return deliversByBriefId;
+    }
+
+    public void setDeliversByBriefId(Collection<Delivers> deliversByBriefId) {
+        this.deliversByBriefId = deliversByBriefId;
     }
 }

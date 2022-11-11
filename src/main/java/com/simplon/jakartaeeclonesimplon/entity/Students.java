@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Students {
@@ -15,14 +12,14 @@ public class Students {
     @Column(name = "student_id")
     private int studentId;
     @Basic
+    @Column(name = "username")
+    private String username;
+    @Basic
     @Column(name = "psswd")
     private String psswd;
     @Basic
     @Column(name = "email")
     private String email;
-    @Basic
-    @Column(name = "promo_name")
-    private String promoName;
     @Basic
     @Column(name = "student_image")
     private String studentImage;
@@ -35,15 +32,11 @@ public class Students {
     @Basic
     @Column(name = "promo_id")
     private Integer promoId;
-//    @OneToMany(mappedBy = "studentsByStudentId")
-//    private Collection<Briefstudent> briefstudentsByStudentId;
-@ManyToMany(cascade = { CascadeType.ALL })
-@JoinTable(
-        name = "Briefstudent",
-        joinColumns = { @JoinColumn(name = "student_id") },
-        inverseJoinColumns = { @JoinColumn(name = "brief_id") }
-)
-Set<Briefs> briefs = new HashSet<Briefs>();
+    @OneToMany(mappedBy = "studentsByStudentId")
+    private Collection<Delivers> deliversByStudentId;
+    @ManyToOne
+    @JoinColumn(name = "promo_id", referencedColumnName = "promo_id", insertable = false, updatable =false)
+    private Promos promosByPromoId;
 
     public int getStudentId() {
         return studentId;
@@ -51,6 +44,14 @@ Set<Briefs> briefs = new HashSet<Briefs>();
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPsswd() {
@@ -67,14 +68,6 @@ Set<Briefs> briefs = new HashSet<Briefs>();
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPromoName() {
-        return promoName;
-    }
-
-    public void setPromoName(String promoName) {
-        this.promoName = promoName;
     }
 
     public String getStudentImage() {
@@ -110,23 +103,67 @@ Set<Briefs> briefs = new HashSet<Briefs>();
     }
 
     @Override
+    public String toString() {
+        return "Students{" +
+                "studentId=" + studentId +
+                ", username='" + username + '\'' +
+                ", psswd='" + psswd + '\'' +
+                ", email='" + email + '\'' +
+                ", studentImage='" + studentImage + '\'' +
+                ", createdOn=" + createdOn +
+                ", deleteAt=" + deleteAt +
+                ", promoId=" + promoId +
+                ", deliversByStudentId=" + deliversByStudentId +
+                ", promosByPromoId=" + promosByPromoId +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Students students = (Students) o;
-        return studentId == students.studentId && Objects.equals(psswd, students.psswd) && Objects.equals(email, students.email) && Objects.equals(promoName, students.promoName) && Objects.equals(studentImage, students.studentImage) && Objects.equals(createdOn, students.createdOn) && Objects.equals(deleteAt, students.deleteAt) && Objects.equals(promoId, students.promoId);
+
+        if (studentId != students.studentId) return false;
+        if (username != null ? !username.equals(students.username) : students.username != null) return false;
+        if (psswd != null ? !psswd.equals(students.psswd) : students.psswd != null) return false;
+        if (email != null ? !email.equals(students.email) : students.email != null) return false;
+        if (studentImage != null ? !studentImage.equals(students.studentImage) : students.studentImage != null)
+            return false;
+        if (createdOn != null ? !createdOn.equals(students.createdOn) : students.createdOn != null) return false;
+        if (deleteAt != null ? !deleteAt.equals(students.deleteAt) : students.deleteAt != null) return false;
+        if (promoId != null ? !promoId.equals(students.promoId) : students.promoId != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentId, psswd, email, promoName, studentImage, createdOn, deleteAt, promoId);
+        int result = studentId;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (psswd != null ? psswd.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (studentImage != null ? studentImage.hashCode() : 0);
+        result = 31 * result + (createdOn != null ? createdOn.hashCode() : 0);
+        result = 31 * result + (deleteAt != null ? deleteAt.hashCode() : 0);
+        result = 31 * result + (promoId != null ? promoId.hashCode() : 0);
+        return result;
     }
 
-    public Collection<Briefstudent> getBriefstudentsByStudentId() {
-        return briefstudentsByStudentId;
+    public Collection<Delivers> getDeliversByStudentId() {
+        return deliversByStudentId;
     }
 
-    public void setBriefstudentsByStudentId(Collection<Briefstudent> briefstudentsByStudentId) {
-        this.briefstudentsByStudentId = briefstudentsByStudentId;
+    public void setDeliversByStudentId(Collection<Delivers> deliversByStudentId) {
+        this.deliversByStudentId = deliversByStudentId;
+    }
+
+    public Promos getPromosByPromoId() {
+        return promosByPromoId;
+    }
+
+    public void setPromosByPromoId(Promos promosByPromoId) {
+        this.promosByPromoId = promosByPromoId;
     }
 }
