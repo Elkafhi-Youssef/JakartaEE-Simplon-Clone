@@ -16,7 +16,7 @@ public class Promos {
     private String promoName;
     @Basic
     @Column(name = "created_on")
-    private Date createdOn;
+    private String createdOn;
     @Basic
     @Column(name = "trainer_id")
     private Integer trainerId;
@@ -44,11 +44,11 @@ public class Promos {
         this.promoName = promoName;
     }
 
-    public Date getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 
