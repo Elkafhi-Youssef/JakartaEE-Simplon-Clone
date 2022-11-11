@@ -4,9 +4,7 @@ create table if not exists trainers (
       psswd VARCHAR ( 50 ) NOT NULL,
       email VARCHAR ( 255 ) UNIQUE NOT NULL,
       trainer_image VARCHAR ( 255 ) UNIQUE NULL,
-      created_on TIMESTAMP NOT NULL,
-      last_login TIMESTAMP,
-    delete_at TIMESTAMP
+      delete_at date
 );
 create table if not exists promos (
     promo_id serial PRIMARY KEY,

@@ -8,7 +8,7 @@ public interface DAO <T>{
 
     List<T> getAll();
 
-    void saveItem(T t);
+    boolean saveItem(T t);
 
     void updateItem(T t, String[] params);
 

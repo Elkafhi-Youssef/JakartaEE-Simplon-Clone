@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Trainers {
@@ -24,14 +25,8 @@ public class Trainers {
     @Column(name = "trainer_image")
     private String trainerImage;
     @Basic
-    @Column(name = "created_on")
-    private Timestamp createdOn;
-    @Basic
-    @Column(name = "last_login")
-    private Timestamp lastLogin;
-    @Basic
     @Column(name = "delete_at")
-    private Timestamp deleteAt;
+    private Date deleteAt;
     @OneToMany(mappedBy = "trainersByTrainerId")
     private Collection<Briefs> briefsByTrainerId;
     @OneToMany(mappedBy = "trainersByTrainerId")
@@ -77,23 +72,7 @@ public class Trainers {
         this.trainerImage = trainerImage;
     }
 
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Timestamp getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(Timestamp lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public Timestamp getDeleteAt() {
+    public Date getDeleteAt() {
         return deleteAt;
     }
 
@@ -114,8 +93,6 @@ public class Trainers {
         if (email != null ? !email.equals(trainers.email) : trainers.email != null) return false;
         if (trainerImage != null ? !trainerImage.equals(trainers.trainerImage) : trainers.trainerImage != null)
             return false;
-        if (createdOn != null ? !createdOn.equals(trainers.createdOn) : trainers.createdOn != null) return false;
-        if (lastLogin != null ? !lastLogin.equals(trainers.lastLogin) : trainers.lastLogin != null) return false;
         if (deleteAt != null ? !deleteAt.equals(trainers.deleteAt) : trainers.deleteAt != null) return false;
 
         return true;
@@ -128,8 +105,6 @@ public class Trainers {
         result = 31 * result + (psswd != null ? psswd.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (trainerImage != null ? trainerImage.hashCode() : 0);
-        result = 31 * result + (createdOn != null ? createdOn.hashCode() : 0);
-        result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
         result = 31 * result + (deleteAt != null ? deleteAt.hashCode() : 0);
         return result;
     }
