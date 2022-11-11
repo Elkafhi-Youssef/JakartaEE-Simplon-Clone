@@ -16,9 +16,9 @@ create table if not exists promos (
 );
 create table if not exists students (
       student_id serial PRIMARY KEY,
+      username VARCHAR ( 50 ) UNIQUE NOT NULL,
       psswd VARCHAR ( 50 ) NOT NULL,
       email VARCHAR ( 255 ) UNIQUE NOT NULL,
-      promo_name VARCHAR ( 50 ) UNIQUE NOT NULL,
       student_image VARCHAR ( 255 ) UNIQUE  NULL,
       created_on TIMESTAMP NOT NULL,
       delete_at TIMESTAMP,
@@ -33,12 +33,17 @@ create  table if not exists briefs(
     date_end date not null ,
     technologies TEXT [] not null ,
     repository TEXT [] not null ,
-    trainer_id int references trainers (trainer_id) not null
+    trainer_id int references trainers (trainer_id) not null,
+    promo_id int references promos (promo_id) not null
 );
-create table if not exists briefstudent(
-    brief_id serial references briefs (brief_id),
-    student_id serial  references students (student_id),
-    PRIMARY KEY (brief_id,student_id)
+
+create table if not exists delivers(
+                                       deliver_id serial PRIMARY KEY,
+                                       message VARCHAR ( 255) not null ,
+                                       repo_link varchar(255) not null,
+                                       student_id int  references students (student_id),
+                                       brief_id int references briefs (brief_id),
+                                       created_on TIMESTAMP NOT NULL
 );
 
 create table if not exists admins(
