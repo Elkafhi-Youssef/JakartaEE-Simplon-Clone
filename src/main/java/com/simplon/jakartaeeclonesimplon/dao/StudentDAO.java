@@ -35,8 +35,18 @@ public class StudentDAO implements DAO<Students> {
     }
 
     @Override
-    public boolean saveItem(Students students) {
-    return false;
+    public boolean saveItem(Students student) {
+        try {
+            EntityManager em= EntityManagerConfig.getInstance().getEntityManager();
+            em.getTransaction().begin();
+            em.persist(student );
+            em.getTransaction().commit();
+            return  true;
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
