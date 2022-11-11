@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Collection;
-import java.util.Objects;
 
 @Entity
 public class Promos {
@@ -21,6 +20,11 @@ public class Promos {
     @Basic
     @Column(name = "trainer_id")
     private Integer trainerId;
+    @OneToMany(mappedBy = "promosByPromoId")
+    private Collection<Briefs> briefsByPromoId;
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable =false)
+    private Trainers trainersByTrainerId;
     @OneToMany(mappedBy = "promosByPromoId")
     private Collection<Students> studentsByPromoId;
 
@@ -60,13 +64,40 @@ public class Promos {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Promos promos = (Promos) o;
-        return promoId == promos.promoId && Objects.equals(promoName, promos.promoName) && Objects.equals(createdOn, promos.createdOn) && Objects.equals(trainerId, promos.trainerId);
+
+        if (promoId != promos.promoId) return false;
+        if (promoName != null ? !promoName.equals(promos.promoName) : promos.promoName != null) return false;
+        if (createdOn != null ? !createdOn.equals(promos.createdOn) : promos.createdOn != null) return false;
+        if (trainerId != null ? !trainerId.equals(promos.trainerId) : promos.trainerId != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(promoId, promoName, createdOn, trainerId);
+        int result = promoId;
+        result = 31 * result + (promoName != null ? promoName.hashCode() : 0);
+        result = 31 * result + (createdOn != null ? createdOn.hashCode() : 0);
+        result = 31 * result + (trainerId != null ? trainerId.hashCode() : 0);
+        return result;
+    }
+
+    public Collection<Briefs> getBriefsByPromoId() {
+        return briefsByPromoId;
+    }
+
+    public void setBriefsByPromoId(Collection<Briefs> briefsByPromoId) {
+        this.briefsByPromoId = briefsByPromoId;
+    }
+
+    public Trainers getTrainersByTrainerId() {
+        return trainersByTrainerId;
+    }
+
+    public void setTrainersByTrainerId(Trainers trainersByTrainerId) {
+        this.trainersByTrainerId = trainersByTrainerId;
     }
 
     public Collection<Students> getStudentsByPromoId() {

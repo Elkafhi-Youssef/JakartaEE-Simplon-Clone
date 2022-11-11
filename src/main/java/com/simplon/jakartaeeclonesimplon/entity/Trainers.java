@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Objects;
 
 @Entity
 public class Trainers {
@@ -106,13 +105,33 @@ public class Trainers {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Trainers trainers = (Trainers) o;
-        return trainerId == trainers.trainerId && Objects.equals(username, trainers.username) && Objects.equals(psswd, trainers.psswd) && Objects.equals(email, trainers.email) && Objects.equals(trainerImage, trainers.trainerImage) && Objects.equals(createdOn, trainers.createdOn) && Objects.equals(lastLogin, trainers.lastLogin) && Objects.equals(deleteAt, trainers.deleteAt);
+
+        if (trainerId != trainers.trainerId) return false;
+        if (username != null ? !username.equals(trainers.username) : trainers.username != null) return false;
+        if (psswd != null ? !psswd.equals(trainers.psswd) : trainers.psswd != null) return false;
+        if (email != null ? !email.equals(trainers.email) : trainers.email != null) return false;
+        if (trainerImage != null ? !trainerImage.equals(trainers.trainerImage) : trainers.trainerImage != null)
+            return false;
+        if (createdOn != null ? !createdOn.equals(trainers.createdOn) : trainers.createdOn != null) return false;
+        if (lastLogin != null ? !lastLogin.equals(trainers.lastLogin) : trainers.lastLogin != null) return false;
+        if (deleteAt != null ? !deleteAt.equals(trainers.deleteAt) : trainers.deleteAt != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainerId, username, psswd, email, trainerImage, createdOn, lastLogin, deleteAt);
+        int result = trainerId;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (psswd != null ? psswd.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (trainerImage != null ? trainerImage.hashCode() : 0);
+        result = 31 * result + (createdOn != null ? createdOn.hashCode() : 0);
+        result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
+        result = 31 * result + (deleteAt != null ? deleteAt.hashCode() : 0);
+        return result;
     }
 
     public Collection<Briefs> getBriefsByTrainerId() {

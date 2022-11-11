@@ -6,7 +6,7 @@
     <persistence-unit name="default">
         <class>com.simplon.jakartaeeclonesimplon.entity.Admins</class>
         <class>com.simplon.jakartaeeclonesimplon.entity.Briefs</class>
-        <class>com.simplon.jakartaeeclonesimplon.entity.Briefstudent</class>
+        <class>com.simplon.jakartaeeclonesimplon.entity.Delivers</class>
         <class>com.simplon.jakartaeeclonesimplon.entity.Promos</class>
         <class>com.simplon.jakartaeeclonesimplon.entity.Students</class>
         <class>com.simplon.jakartaeeclonesimplon.entity.Trainers</class>
@@ -16,6 +16,7 @@
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="youssef1999"/>
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
