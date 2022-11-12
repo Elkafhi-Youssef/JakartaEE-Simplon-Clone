@@ -2,6 +2,7 @@ package com.simplon.jakartaeeclonesimplon.service;
 
 import com.simplon.jakartaeeclonesimplon.dao.StudentDAO;
 import com.simplon.jakartaeeclonesimplon.dao.TrainerDAO;
+import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
 
@@ -21,5 +22,14 @@ public class TrainerService {
         message = "error";
     }
     return message;
+    }
+    public void getTrainers(){
+        List<Trainers> trainers = new ArrayList<Trainers>();
+        trainers  = trainertDAO.getAll();
+        System.out.println("list of trainers");
+        for (Trainers trainer :trainers) {
+            System.out.println(trainer.toString());
+        }
+        System.out.println("end of trainer");
     }
 }

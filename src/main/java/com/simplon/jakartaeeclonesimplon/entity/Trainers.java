@@ -124,4 +124,18 @@ public class Trainers {
     public void setPromosByTrainerId(Collection<Promos> promosByTrainerId) {
         this.promosByTrainerId = promosByTrainerId;
     }
+
+    @Override
+    public String toString() {
+        return "Trainers{" +
+                "trainerId=" + trainerId +
+                ", username='" + username + '\'' +
+                ", psswd='" + psswd + '\'' +
+                ", email='" + email + '\'' +
+                ", trainerImage='" + trainerImage + '\'' +
+                ", deleteAt=" + deleteAt +
+                ", briefsByTrainerId=" + briefsByTrainerId +
+                ", promosByTrainerId=" + promosByTrainerId +
+                '}';
+    }
 }

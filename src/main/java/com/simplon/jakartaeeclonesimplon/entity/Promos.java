@@ -106,5 +106,16 @@ public class Promos {
 
     public void setStudentsByPromoId(Collection<Students> studentsByPromoId) {
         this.studentsByPromoId = studentsByPromoId;
+    } @Override
+    public String toString() {
+        return "Promos{" +
+                "promoId=" + promoId +
+                ", promoName='" + promoName + '\'' +
+                ", createdOn='" + createdOn + '\'' +
+                ", trainerId=" + trainerId +
+                ", briefsByPromoId=" + briefsByPromoId +
+                ", trainersByTrainerId=" + trainersByTrainerId +
+                ", studentsByPromoId=" + studentsByPromoId +
+                '}';
     }
 }
