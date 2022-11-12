@@ -6,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String url=application.getInitParameter("url"); %>
+<%
+    String url=application.getInitParameter("url");
+%>
 <html>
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,6 +20,7 @@
 </head>
 <body>
 <div class="w-screen">
+
     <section class="h-screen">
         <div class="mx-auto px-6 py-12 h-full w-full max-w-[550px]">
             <div class="flex justify-center flex-col items-center h-full text-gray-800">
@@ -25,7 +28,7 @@
                     <h1 class=" text-3xl text-red-600  underline decoration-sky-500">Login admin </h1>
                 </div>
                 <div class="w-full mt-10">
-                    <form action="login" method="post">
+                    <form action="<%=url%>AdminServlet" method="post">
                         <!-- Email input -->
                         <div class="mb-6">
                             <input name="email" type="email" placeholder="Enter you email..."
@@ -37,7 +40,7 @@
                             <input name="password" type="password" placeholder="Enter your password..."
                                    class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                         </div>
-
+                        <input type="hidden" name="action" value="loginAdmin"/>
 
 
                         <button type="submit"

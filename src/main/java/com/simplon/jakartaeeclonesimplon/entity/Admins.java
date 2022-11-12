@@ -114,4 +114,17 @@ public class Admins {
         result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Admins{" +
+                "adminId=" + adminId +
+                ", username='" + username + '\'' +
+                ", psswd='" + psswd + '\'' +
+                ", email='" + email + '\'' +
+                ", adminImage='" + adminImage + '\'' +
+                ", createdOn=" + createdOn +
+                ", lastLogin=" + lastLogin +
+                '}';
+    }
 }
