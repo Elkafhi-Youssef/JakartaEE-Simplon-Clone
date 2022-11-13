@@ -12,7 +12,7 @@ import java.util.List;
 public class TrainerService {
     Trainers trainer;
     TrainerDAO trainertDAO  = new TrainerDAO();
-    List<Trainers> students = new ArrayList<Trainers>();
+    List<Trainers> trainers = new ArrayList<Trainers>();
     public String addTrainer(Trainers trainer){
     String message ;
     boolean result  =  trainertDAO.saveItem(trainer);
@@ -31,5 +31,9 @@ public class TrainerService {
             System.out.println(trainer.toString());
         }
         System.out.println("end of trainer");
+    }
+    public List<Trainers> getAllTrainers() {
+        trainers =  trainertDAO.getAll();
+        return trainers;
     }
 }
