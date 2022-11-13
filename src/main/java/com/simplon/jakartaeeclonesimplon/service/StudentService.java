@@ -20,6 +20,10 @@ public class StudentService {
         studentDAO = new StudentDAO();
         student = new Students();
     }
+    public List<Students> getAllStudents() {
+        students = studentDAO.getAll();
+        return students;
+    }
     public String loginStudent(String email, String password) {
         String message ;
         student = studentDAO.getByEmail(email);

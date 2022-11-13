@@ -40,7 +40,7 @@ public class AdminServlet extends HttpServlet {
                         logAdmin = adminService.admin;
                         HttpSession session = request.getSession();
                         session.setAttribute("adminName",logAdmin.getUsername());
-                        request.getRequestDispatcher("admin/dashboard.jsp").forward(request, response);
+                        response.sendRedirect("DashboardServlet");
                     }else {
                         System.out.println("error: " + result);
                         request.getRequestDispatcher("admin/loginAdmin.jsp").forward(request, response);
@@ -49,7 +49,8 @@ public class AdminServlet extends HttpServlet {
                 case "logoutAdmin"  -> {
                     HttpSession session = request.getSession();
                     session.removeAttribute("adminName");
-                    request.getRequestDispatcher("admin/loginAdmin.jsp").forward(request, response);
+                    request.getRequestDispatcher("admin/dashboard.jsp").forward(request, response);
+
                 }
             }
 
