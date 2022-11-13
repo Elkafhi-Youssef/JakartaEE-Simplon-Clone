@@ -8,9 +8,12 @@ import java.util.List;
 
 public class PromoService {
     public Promos promo;
-    public PromoDAO promoDAO=  new PromoDAO();
+    public PromoDAO promoDAO;
+    protected  List<Promos> promos = new ArrayList<Promos>();
 
-    public PromoService() {}
+    public PromoService() {
+        promoDAO=  new PromoDAO();
+    }
     public String addPromo(Promos promo){
         String message ;
         boolean result  =  promoDAO.saveItem(promo);
@@ -21,14 +24,10 @@ public class PromoService {
         }
         return message;
     }
-    public void getPromos(){
-        List<Promos> promos = new ArrayList<Promos>();
-        promos  = promoDAO.getAll();
-        System.out.println("list of promos");
-        for (Promos promo: promos) {
-            System.out.println(promos.toString());
-        }
-        System.out.println("end of list of promos");
+    public List<Promos> getAllPromos(){
+        this.promos  = promoDAO.getAll();
+        return this.promos;
+
     }
     public Promos getPromoById(int id){
         promo  = new Promos();
