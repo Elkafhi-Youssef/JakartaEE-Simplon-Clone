@@ -18,11 +18,13 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet {
     String message ;
     TrainerService trainerService;
+    StudentService studentService;
     PromoService promoService;
 
     @Override
     public void init() throws ServletException {
         this.trainerService = new TrainerService();
+        this.studentService = new StudentService();
         this.promoService = new PromoService();
         System.out.println("in admin servlet init");
     }
@@ -70,6 +72,16 @@ public class AdminServlet extends HttpServlet {
                         response.sendRedirect("TrainerServlet/Trainers");
                     }
                 }
+                case "AddStudent"  -> {
+                    Students student = new Students();
+                    student.setEmail(request.getParameter("email"));
+                    student.setPsswd(request.getParameter("password"));
+                    student.setUsername(request.getParameter("username"));
+                    this.message = this.studentService.addStudent(student);
+                    if (this.message.equals("success")) {
+                        response.sendRedirect("DashboardServlet");
+                     }
+                  }
                 case "addPromo" -> {
                     Promos promo = new Promos();
                     promo.setPromoName(request.getParameter("promoname"));
@@ -77,6 +89,7 @@ public class AdminServlet extends HttpServlet {
                     this.message = this.promoService.addPromo(promo);
                     if (this.message.equals("success")){
                         response.sendRedirect("PromoServlet/Promos");
+
                     }
                 }
             }

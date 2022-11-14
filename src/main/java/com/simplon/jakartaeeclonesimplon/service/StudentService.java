@@ -22,6 +22,12 @@ public class StudentService {
     }
     public List<Students> getAllStudents() {
         students = studentDAO.getAll();
+        for (Students s : students){
+            System.out.println(s.getStudentId());
+            if (s.getPromosByPromoId() != null){
+                System.out.println(s.getPromosByPromoId().getPromoName());
+            }
+        }
         return students;
     }
     public String loginStudent(String email, String password) {
