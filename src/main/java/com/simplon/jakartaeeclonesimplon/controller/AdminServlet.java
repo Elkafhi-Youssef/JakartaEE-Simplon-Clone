@@ -2,8 +2,10 @@ package com.simplon.jakartaeeclonesimplon.controller;
 
 import com.simplon.jakartaeeclonesimplon.entity.Admins;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
+import com.simplon.jakartaeeclonesimplon.entity.Trainers;
 import com.simplon.jakartaeeclonesimplon.service.AdminService;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
+import com.simplon.jakartaeeclonesimplon.service.TrainerService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,9 +15,11 @@ import java.io.IOException;
 @WebServlet(name = "AdminServlet", value = "/AdminServlet")
 public class AdminServlet extends HttpServlet {
     String message ;
+    TrainerService trainerService;
 
     @Override
     public void init() throws ServletException {
+        this.trainerService = new TrainerService();
         System.out.println("in admin servlet init");
     }
 
@@ -51,6 +55,16 @@ public class AdminServlet extends HttpServlet {
                     session.removeAttribute("adminName");
                     request.getRequestDispatcher("admin/dashboard.jsp").forward(request, response);
 
+                }
+                case "AddTrainer" -> {
+                    Trainers trainer = new Trainers();
+                    trainer.setEmail(request.getParameter("email"));
+                    trainer.setPsswd(request.getParameter("password"));
+                    trainer.setUsername(request.getParameter("username"));
+                    this.message = this.trainerService.addTrainer(trainer);
+                    if (this.message.equals("success")) {
+                        response.sendRedirect("TrainerServlet/Trainers");
+                    }
                 }
             }
 
