@@ -31,11 +31,11 @@ public class TrainerDAO implements DAO<Trainers> {
 
     @Override
     public boolean saveItem(Trainers trainer) {
-        trainer.toString();
+
         try {
             EntityManager em= EntityManagerConfig.getInstance().getEntityManager();
             em.getTransaction().begin();
-            em.persist(trainer );
+            em.persist(trainer);
             em.getTransaction().commit();
             return  true;
         }catch(Exception e)

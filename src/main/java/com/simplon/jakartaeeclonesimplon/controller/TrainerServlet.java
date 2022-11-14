@@ -31,6 +31,8 @@ public class TrainerServlet extends HttpServlet {
             trainers = this.trainerService.getAllTrainers();
             request.setAttribute("trainersList", trainers);
             request.getRequestDispatcher("/admin/trainers.jsp").forward(request, response);
+        }else if (requestedUrl.equals(this.url+"TrainerServlet/AddTrainer")){
+            request.getRequestDispatcher("/admin/addTrainer.jsp").forward(request, response);
         }
     }
 
