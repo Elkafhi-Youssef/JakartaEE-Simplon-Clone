@@ -16,7 +16,15 @@
                 <td class="p-3">${p.getPromoId()}</td>
                 <td class="p-3">${p.getPromoName()}</td>
                 <td class="p-3">${p.getCreatedOn()}</td>
-                <td class="p-3">${p.getTrainersByTrainerId().getUsername()}</td>
+                            <c:choose>
+                              <c:when test="${p.getTrainersByTrainerId().getUsername() != null}">
+                                  <td class="p-3">${p.getTrainersByTrainerId().getUsername()}</td>
+                              </c:when>
+                              <c:otherwise>
+                                <td class="p-3">-----</td>
+                              </c:otherwise>
+                            </c:choose>
+
                 <td class="p-3">
                     <div class="flex item-center ">
                         <form action="<%=url+"market-admin/promotion"%>" method="post" class="m-0">

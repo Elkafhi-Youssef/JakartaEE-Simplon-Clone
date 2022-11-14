@@ -1,9 +1,11 @@
 package com.simplon.jakartaeeclonesimplon.controller;
 
 import com.simplon.jakartaeeclonesimplon.entity.Admins;
+import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
 import com.simplon.jakartaeeclonesimplon.service.AdminService;
+import com.simplon.jakartaeeclonesimplon.service.PromoService;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
 import com.simplon.jakartaeeclonesimplon.service.TrainerService;
 import jakarta.servlet.*;
@@ -17,11 +19,13 @@ public class AdminServlet extends HttpServlet {
     String message ;
     TrainerService trainerService;
     StudentService studentService;
+    PromoService promoService;
 
     @Override
     public void init() throws ServletException {
         this.trainerService = new TrainerService();
         this.studentService = new StudentService();
+        this.promoService = new PromoService();
         System.out.println("in admin servlet init");
     }
 
@@ -76,6 +80,15 @@ public class AdminServlet extends HttpServlet {
                     this.message = this.studentService.addStudent(student);
                     if (this.message.equals("success")) {
                         response.sendRedirect("DashboardServlet");
+                     }
+                  }
+                case "addPromo" -> {
+                    Promos promo = new Promos();
+                    promo.setPromoName(request.getParameter("promoname"));
+                    promo.setCreatedOn(request.getParameter("created_on"));
+                    this.message = this.promoService.addPromo(promo);
+                    if (this.message.equals("success")){
+                        response.sendRedirect("PromoServlet/Promos");
 
                     }
                 }

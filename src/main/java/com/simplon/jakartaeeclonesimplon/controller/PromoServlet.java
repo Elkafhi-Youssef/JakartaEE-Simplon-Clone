@@ -28,13 +28,15 @@ public class PromoServlet extends HttpServlet {
             for (Promos p : promos) {
                 System.out.println(p.getPromoId());
                 System.out.println(p.getPromoName());
-                System.out.println(p.getTrainersByTrainerId().getUsername());
+                if (p.getTrainersByTrainerId() !=null){
+                    System.out.println(p.getTrainersByTrainerId().getUsername());
+                }
                 System.out.println(p.getCreatedOn());
             }
             request.setAttribute("promosList", promos);
             request.getRequestDispatcher("/admin/promos.jsp").forward(request, response);
         }else if(requestedUrl.equals(this.url+"PromoServlet/AddPromo")){
-            System.out.println("add promo");
+            request.getRequestDispatcher("/admin/addPromo.jsp").forward(request, response);
         }
     }
 
