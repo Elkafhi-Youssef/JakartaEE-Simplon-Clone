@@ -13,6 +13,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -91,6 +93,21 @@ public class AdminServlet extends HttpServlet {
                         response.sendRedirect("PromoServlet/Promos");
 
                     }
+                }
+                case "AssignTrainer" -> {
+                    PromoService promoService = new PromoService();
+                    TrainerService trainerService = new TrainerService();
+                    Promos promo = new Promos();
+                    int id = Integer.parseInt(request.getParameter("promo"));
+                   promo =  this.promoService.getPromoById(id);
+                    System.out.println(promo.toString());
+                    System.out.println("choose the id trainer");
+                    int idTrainer =Integer.parseInt(request.getParameter("promo"));
+                    promo.setTrainerId(Integer.parseInt(request.getParameter("promo")));
+                   String result =  promoService.assignTrainerToPromo(promo);
+                   if (result.equals("success")){
+                       response.sendRedirect("PromoServlet/Promos");
+                   }
                 }
             }
 
