@@ -16,10 +16,12 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet {
     String message ;
     TrainerService trainerService;
+    StudentService studentService;
 
     @Override
     public void init() throws ServletException {
         this.trainerService = new TrainerService();
+        this.studentService = new StudentService();
         System.out.println("in admin servlet init");
     }
 
@@ -64,6 +66,17 @@ public class AdminServlet extends HttpServlet {
                     this.message = this.trainerService.addTrainer(trainer);
                     if (this.message.equals("success")) {
                         response.sendRedirect("TrainerServlet/Trainers");
+                    }
+                }
+                case "AddStudent"  -> {
+                    Students student = new Students();
+                    student.setEmail(request.getParameter("email"));
+                    student.setPsswd(request.getParameter("password"));
+                    student.setUsername(request.getParameter("username"));
+                    this.message = this.studentService.addStudent(student);
+                    if (this.message.equals("success")) {
+                        response.sendRedirect("DashboardServlet");
+
                     }
                 }
             }

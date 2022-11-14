@@ -19,8 +19,18 @@
                 <td class="p-3"> <img src="<%=url%>admin/assests/student.png" class="w-11"></td>
                 <td class="p-3">${student.getUsername()}</td>
                 <td class="p-3">${student.getEmail()}</td>
-                <td class="p-3">${student.getPromosByPromoId().getPromoName()}</td>
-                <td class="p-3">${student.getPromosByPromoId().getTrainersByTrainerId().getUsername()}</td>
+                <c:choose>
+                  <c:when test="${student.getPromosByPromoId() != null}">
+
+                      <td class="p-3">${student.getPromosByPromoId().getPromoName()}</td>
+                      <td class="p-3">${student.getPromosByPromoId().getTrainersByTrainerId().getUsername()}</td>
+                  </c:when>
+                  <c:otherwise>
+                    <td class="p-3">------</td>
+                    <td class="p-3">------</td>
+                  </c:otherwise>
+                </c:choose>
+
                 <td class="p-3">
                     <div class="flex item-center ">
                         <form action="<%=url+"market-admin/promotion"%>" method="post" class="m-0">

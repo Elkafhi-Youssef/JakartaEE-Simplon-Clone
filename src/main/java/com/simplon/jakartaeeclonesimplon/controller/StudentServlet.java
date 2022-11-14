@@ -9,15 +9,15 @@ import java.io.IOException;
 
 @WebServlet(name = "StudentServlet", value = "/StudentServlet")
 public class StudentServlet extends HttpServlet {
-    StudentService std;
+    StudentService studentService;
     @Override
     public void init() throws ServletException {
-        std = new StudentService();
+        this.studentService = new StudentService();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/admin/addStudent.jsp").forward(request, response);
     }
 
     @Override
