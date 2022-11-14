@@ -28,7 +28,8 @@ public class TrainerService {
         trainers  = trainertDAO.getAll();
         System.out.println("list of trainers");
         for (Trainers trainer :trainers) {
-            System.out.println(trainer.toString());
+            System.out.println(trainer.getTrainerId());
+            System.out.println(trainer.getUsername());
         }
         System.out.println("end of trainer");
     }
