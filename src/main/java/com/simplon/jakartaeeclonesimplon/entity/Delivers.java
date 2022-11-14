@@ -25,10 +25,10 @@ public class Delivers {
     @Basic
     @Column(name = "created_on")
     private Timestamp createdOn;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "student_id", referencedColumnName = "student_id", insertable = false, updatable =false)
     private Students studentsByStudentId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "brief_id", referencedColumnName = "brief_id", insertable = false, updatable =false)
     private Briefs briefsByBriefId;
 

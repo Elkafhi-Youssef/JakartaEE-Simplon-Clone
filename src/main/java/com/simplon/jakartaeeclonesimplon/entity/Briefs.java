@@ -38,10 +38,10 @@ public class Briefs {
     @Basic
     @Column(name = "promo_id")
     private int promoId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", nullable = false, insertable = false, updatable =false)
     private Trainers trainersByTrainerId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "promo_id", referencedColumnName = "promo_id", nullable = false , insertable = false, updatable =false)
     private Promos promosByPromoId;
     @OneToMany(mappedBy = "briefsByBriefId")

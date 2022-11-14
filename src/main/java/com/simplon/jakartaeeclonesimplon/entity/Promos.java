@@ -22,7 +22,7 @@ public class Promos {
     private Integer trainerId;
     @OneToMany(mappedBy = "promosByPromoId")
     private Collection<Briefs> briefsByPromoId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable =false)
     private Trainers trainersByTrainerId;
     @OneToMany(mappedBy = "promosByPromoId")

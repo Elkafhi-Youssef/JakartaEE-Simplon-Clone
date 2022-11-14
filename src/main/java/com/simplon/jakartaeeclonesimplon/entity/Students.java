@@ -33,7 +33,7 @@ public class Students {
     private Integer promoId;
     @OneToMany(mappedBy = "studentsByStudentId")
     private Collection<Delivers> deliversByStudentId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "promo_id", referencedColumnName = "promo_id", insertable = false, updatable =false)
     private Promos promosByPromoId;
 
