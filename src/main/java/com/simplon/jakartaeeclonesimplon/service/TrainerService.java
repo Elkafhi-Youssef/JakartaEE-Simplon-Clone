@@ -1,7 +1,9 @@
 package com.simplon.jakartaeeclonesimplon.service;
 
+import com.simplon.jakartaeeclonesimplon.dao.AdminDAO;
 import com.simplon.jakartaeeclonesimplon.dao.StudentDAO;
 import com.simplon.jakartaeeclonesimplon.dao.TrainerDAO;
+import com.simplon.jakartaeeclonesimplon.entity.Admins;
 import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
@@ -10,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainerService {
-    Trainers trainer;
+    public Trainers trainer = new Trainers();
+
     TrainerDAO trainertDAO  = new TrainerDAO();
     List<Trainers> trainers = new ArrayList<Trainers>();
     public String addTrainer(Trainers trainer){
@@ -36,5 +39,21 @@ public class TrainerService {
     public List<Trainers> getAllTrainers() {
         trainers =  trainertDAO.getAll();
         return trainers;
+    }
+    public String loginTrainer(Trainers trainer) {
+        String message ;
+
+        String email =  trainer.getEmail();
+        this.trainer = this.trainertDAO.getByEmail(email);
+        if (this.trainer != null) {
+            if (trainer.getPsswd().equals(this.trainer.getPsswd())) {
+                message = "success";
+            }else{
+                message = "password is incorrect";
+            }
+        }else {
+            message = "error";
+        }
+        return message;
     }
 }

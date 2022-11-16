@@ -1,6 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.dao;
 
 import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
+import com.simplon.jakartaeeclonesimplon.entity.Admins;
 import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
 import jakarta.persistence.EntityManager;
@@ -9,6 +10,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class TrainerDAO implements DAO<Trainers> {
+    Trainers trainers ;
     @Override
     public Trainers getById(int id) {
         return null;
@@ -54,5 +56,14 @@ public class TrainerDAO implements DAO<Trainers> {
     @Override
     public void delete(Trainers trainers) {
 
+    }
+    public Trainers getByEmail(String email) {
+        EntityManager em = EntityManagerConfig.getInstance().getEntityManager();
+        TypedQuery<Trainers> query = em.createQuery("SELECT a FROM Trainers a WHERE a.email = ?1", Trainers.class);
+        query.setParameter(1,email);
+        this.trainers = new Trainers();
+        this.trainers  = query.getSingleResult();
+
+        return  this.trainers;
     }
 }
