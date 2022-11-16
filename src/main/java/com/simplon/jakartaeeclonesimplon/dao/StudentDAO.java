@@ -1,6 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.dao;
 
 import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
+import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -16,6 +17,13 @@ public class StudentDAO implements DAO<Students> {
 
     @Override
     public Students getById(int id) {
+        try{
+            EntityManager em= EntityManagerConfig.getInstance().getEntityManager();
+            return em.find(Students.class, id);
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
@@ -83,5 +91,47 @@ public class StudentDAO implements DAO<Students> {
         this.student  = query.getSingleResult();
         System.out.println(student.toString());
         return  this.student;
+    }
+    public List<Students> getAllStudentsWithNoPromo() {
+        try {
+            EntityManager em = EntityManagerConfig.getInstance().getEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Students> query = em.createQuery("SELECT s FROM Students s WHERE  s.promoId is null", Students.class);
+            List<Students> StudentsList = query.getResultList();
+            em.getTransaction().commit();
+            return StudentsList;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    public boolean assignStudentPromo(Students student){
+        try{
+
+            EntityManager em= EntityManagerConfig.getInstance().getEntityManager();
+            em.getTransaction().begin();
+            em.merge(student);
+            em.getTransaction().commit();
+            return true;
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    public List<Students> getAllStudentsByIdPromo(int promoId) {
+        try {
+            EntityManager em = EntityManagerConfig.getInstance().getEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Students> query = em.createQuery("SELECT s FROM Students s WHERE  s.promoId =4", Students.class);
+//            query.setParameter(1,promoId);
+//            query.executeUpdate();
+            List<Students> StudentsList = query.getResultList();
+            em.getTransaction().commit();
+            return StudentsList;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
