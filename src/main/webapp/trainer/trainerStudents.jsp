@@ -33,21 +33,14 @@
 
                 <td class="p-3">
                     <div class="flex item-center ">
-                        <form action="<%=url+"market-admin/promotion"%>" method="post" class="m-0">
-                            <button name="promotion-id" value="${student.getStudentId()}" class="w-4 mr-2 text-blue-600 transform hover:text-purple-500 hover:scale-110">
-                                <i class="fa-solid fa-eye"></i>
+                        <form action="<%=url+"TrainerServlet"%>" method="post" class="m-0 w-full">
+                            <input hidden type="text" name="action" value="AssignStudentToPromo">
+                            <input hidden type="text" name="studentId" value="${student.getStudentId()}">
+                            <button  type="submit" class=" mr-2 text-blue-600 transform hover:text-purple-500 hover:scale-110">
+                               <span><i class="fa-solid fa-add"> </i> Assign</span>
                             </button>
                         </form>
-                        <form class="m-0">
-                            <button type="button" class="w-4 mr-2 text-green-600 transform hover:text-purple-500 hover:scale-110">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                        </form>
-                        <form class="m-0">
-                            <button type="button" class="w-4 mr-2 text-red-600 transform hover:text-purple-500 hover:scale-110 disabled">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
+
                     </div>
                 </td>
 

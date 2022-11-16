@@ -12,7 +12,7 @@ public class PromoService {
     protected  List<Promos> promos = new ArrayList<Promos>();
 
     public PromoService() {
-        promoDAO=  new PromoDAO();
+        this.promoDAO=  new PromoDAO();
     }
     public String addPromo(Promos promo){
         String message ;
@@ -42,6 +42,13 @@ public class PromoService {
             message = "error";
         }
         return message;
+    }
+    public int getPromoOfTrainer(int id){
+        System.out.println("in the getPromoOfTrainer function ");
+        this.promo = this.promoDAO.getById(id);
+        int promoId = this.promo.getPromoId();
+        System.out.println("id promo getPromoOfTrainer "+promoId);
+        return promoId;
     }
 
 }

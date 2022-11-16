@@ -2,6 +2,7 @@ package com.simplon.jakartaeeclonesimplon.service;
 
 import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
 import com.simplon.jakartaeeclonesimplon.dao.StudentDAO;
+import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
 import jakarta.persistence.EntityManager;
@@ -14,10 +15,10 @@ import java.util.List;
 
 public class StudentService {
     Students student;
-    StudentDAO studentDAO = new StudentDAO();
+    StudentDAO studentDAO ;
     List<Students> students = new ArrayList<Students>();
     public StudentService(){
-        studentDAO = new StudentDAO();
+        this.studentDAO = new StudentDAO();
         student = new Students();
     }
     public List<Students> getAllStudents() {
@@ -53,5 +54,38 @@ public class StudentService {
             message = "error";
         }
         return message;
+    }
+    public List<Students> getAllStudentsWithNoPromo() {
+        students = studentDAO.getAllStudentsWithNoPromo();
+        for (Students s : students){
+            System.out.println("test wax kayn ga3 student "+s.getStudentId());
+            if (s.getPromosByPromoId() != null){
+                System.out.println(s.getPromosByPromoId().getPromoName());
+            }
+        }
+        return students;
+    }
+    public Students getStudentById(int studentId){
+        this.student = this.studentDAO.getById(studentId);
+        return this.student;
+    }
+    public String assignStudentPromo( Students student){
+        String message ;
+        if(this.studentDAO.assignStudentPromo(student)){
+            message = "success";
+        }else{
+            message = "error";
+        }
+        return message;
+    }
+    public List<Students> getAllStudentsByIdPromo(int id) {
+        students = studentDAO.getAllStudentsByIdPromo(id);
+        for (Students s : students){
+            System.out.println(s.getStudentId());
+            if (s.getPromosByPromoId() != null){
+                System.out.println(s.getPromosByPromoId().getPromoName());
+            }
+        }
+        return students;
     }
 }

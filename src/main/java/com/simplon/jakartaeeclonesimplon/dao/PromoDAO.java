@@ -10,10 +10,10 @@ import java.util.List;
 
 public class PromoDAO implements DAO<Promos>{
     @Override
-    public Promos getById(int promoId) {
+    public Promos getById(int id) {
         try{
             EntityManager em= EntityManagerConfig.getInstance().getEntityManager();
-            return em.find(Promos.class, promoId);
+            return em.find(Promos.class, id);
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
