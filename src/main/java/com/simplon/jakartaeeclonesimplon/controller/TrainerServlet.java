@@ -1,8 +1,10 @@
 package com.simplon.jakartaeeclonesimplon.controller;
 
+import com.simplon.jakartaeeclonesimplon.entity.Admins;
 import com.simplon.jakartaeeclonesimplon.entity.Promos;
 import com.simplon.jakartaeeclonesimplon.entity.Students;
 import com.simplon.jakartaeeclonesimplon.entity.Trainers;
+import com.simplon.jakartaeeclonesimplon.service.AdminService;
 import com.simplon.jakartaeeclonesimplon.service.PromoService;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
 import com.simplon.jakartaeeclonesimplon.service.TrainerService;
@@ -14,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet({"/TrainerServlet/Trainers","/TrainerServlet/AddTrainer", "/TrainerServlet/AssignTrainer"})
+@WebServlet({"/TrainerServlet/Trainers","/TrainerServlet/AddTrainer", "/TrainerServlet/AssignTrainer","/TrainerServlet"})
 public class TrainerServlet extends HttpServlet {
     private String url;
     TrainerService trainerService;
@@ -49,6 +51,27 @@ public class TrainerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        if(request.getParameter("action") != null) {
+            switch (request.getParameter("action")) {
+                case "loginTrainer" -> {
+                    Trainers trainer = new Trainers();
+                    trainer.setEmail(request.getParameter("email"));
+                    trainer.setPsswd(request.getParameter("password"));
+                    TrainerService trainerService = new TrainerService();
+                    String result = trainerService.loginTrainer(trainer);
+                    System.out.println("check the value of the " + result);
+                    Trainers logTrainer;
+                    if (result.equals("success")) {
+                        logTrainer = trainerService.trainer;
+                        HttpSession session = request.getSession();
+                        session.setAttribute("adminName", logTrainer.getUsername());
+                        request.getRequestDispatcher("trainer/trainerHome.jsp").forward(request, response);
+                    } else {
+                        System.out.println("error: " + result);
+                        request.getRequestDispatcher("admin/loginAdmin.jsp").forward(request, response);
+                    }
+                }
+            }
+        }
     }
 }
