@@ -1,7 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.service;
 
 import com.simplon.jakartaeeclonesimplon.dao.AdminDAO;
-import com.simplon.jakartaeeclonesimplon.entity.Admins;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Admins;
 
 public class AdminService {
     public   Admins admin = new Admins();

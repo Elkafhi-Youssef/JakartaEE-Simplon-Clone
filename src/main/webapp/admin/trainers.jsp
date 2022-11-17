@@ -1,5 +1,5 @@
 <%@ include file="./header.jsp" %>
-<%@ page import="com.simplon.jakartaeeclonesimplon.entity.Promos" %>
+<%@ page import="com.simplon.jakartaeeclonesimplon.dao.entity.Promos" %>
 <%@ page import="java.util.List" %>
 <div>
   <table class="w-full rounded-md overflow-hidden">

@@ -1,12 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.service;
 
-import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
 import com.simplon.jakartaeeclonesimplon.dao.StudentDAO;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
-import com.simplon.jakartaeeclonesimplon.entity.Trainers;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Students;
 
 import java.util.ArrayList;
 import java.util.List;

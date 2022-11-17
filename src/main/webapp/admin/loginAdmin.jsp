@@ -23,16 +23,16 @@
 
     <section class="h-screen">
         <div class="mx-auto px-6 py-12 h-full w-full max-w-[550px]">
-            <div class="flex justify-center flex-col items-center h-full text-gray-800">
+            <div class="flex justify-center flex-col items-center h-full text-gray-800 border border-red-300 bg-red-100 p-5 rounded-md h-[60%]">
                 <div class="w-44 border rounded-md">
-                    <h1 class=" text-3xl text-red-600  underline decoration-sky-500">Login admin </h1>
+                    <h1 class=" text-3xl text-red-600  "><img src="<%=url%>admin/assests/simplon.png" class="w-full"></h1>
                 </div>
                 <div class="w-full mt-10">
                     <form action="<%=url%>AdminServlet" method="post">
                         <!-- Email input -->
                         <div class="mb-6">
                             <input name="email" type="email" placeholder="Enter you email..."
-                                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none" />
                         </div>
 
                         <!-- Password input -->
@@ -44,7 +44,7 @@
 
 
                         <button type="submit"
-                                class="inline-block mt-4 px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                                class="inline-block mt-4 px-7 py-3 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                                 data-mdb-ripple="true" data-mdb-ripple-color="light">
                             Login
                         </button>

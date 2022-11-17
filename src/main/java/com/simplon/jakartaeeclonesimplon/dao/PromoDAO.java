@@ -1,8 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.dao;
 
 import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Promos;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 

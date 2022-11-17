@@ -1,4 +1,4 @@
-package com.simplon.jakartaeeclonesimplon.entity;
+package com.simplon.jakartaeeclonesimplon.dao.entity;
 
 import jakarta.persistence.*;
 

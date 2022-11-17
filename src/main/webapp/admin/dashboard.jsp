@@ -33,11 +33,7 @@
 
                 <td class="p-3">
                     <div class="flex item-center ">
-                        <form action="<%=url+"market-admin/promotion"%>" method="post" class="m-0">
-                            <button name="promotion-id" value="${student.getStudentId()}" class="w-4 mr-2 text-blue-600 transform hover:text-purple-500 hover:scale-110">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </form>
+
                         <form class="m-0">
                             <button type="button" class="w-4 mr-2 text-green-600 transform hover:text-purple-500 hover:scale-110">
                                 <i class="fa-solid fa-pen-to-square"></i>

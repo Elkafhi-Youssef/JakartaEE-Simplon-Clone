@@ -1,12 +1,10 @@
 package com.simplon.jakartaeeclonesimplon.service;
 
-import com.simplon.jakartaeeclonesimplon.dao.AdminDAO;
-import com.simplon.jakartaeeclonesimplon.dao.StudentDAO;
+import com.simplon.jakartaeeclonesimplon.dao.BriefDAO;
 import com.simplon.jakartaeeclonesimplon.dao.TrainerDAO;
-import com.simplon.jakartaeeclonesimplon.entity.Admins;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
-import com.simplon.jakartaeeclonesimplon.entity.Trainers;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Briefs;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Trainers;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +49,17 @@ public class TrainerService {
             }else{
                 message = "password is incorrect";
             }
+        }else {
+            message = "error";
+        }
+        return message;
+    }
+    public String addBrief(Briefs brief){
+        String message ;
+        BriefDAO briefDAO = new BriefDAO();
+        boolean result  = briefDAO.saveItem(brief);
+        if (result == true){
+            message = "success";
         }else {
             message = "error";
         }
