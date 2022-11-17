@@ -1,10 +1,10 @@
 package com.simplon.jakartaeeclonesimplon.controller;
 
-import com.simplon.jakartaeeclonesimplon.entity.Admins;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
-import com.simplon.jakartaeeclonesimplon.entity.Trainers;
-import com.simplon.jakartaeeclonesimplon.service.AdminService;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Briefs;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Promos;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Students;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Trainers;
+import com.simplon.jakartaeeclonesimplon.entity.*;
 import com.simplon.jakartaeeclonesimplon.service.PromoService;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
 import com.simplon.jakartaeeclonesimplon.service.TrainerService;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet({"/TrainerServlet/Trainers","/TrainerServlet/AddTrainer", "/TrainerServlet/AssignTrainer","/TrainerServlet","/TrainerServlet/getAllStudentByTrainer","/TrainerServlet/OwnStudent"})
+@WebServlet({"/TrainerServlet/Trainers","/TrainerServlet/AddTrainer", "/TrainerServlet/AssignTrainer","/TrainerServlet","/TrainerServlet/getAllStudentByTrainer","/TrainerServlet/OwnStudent", "/TrainerServlet/AddBrief"})
 public class TrainerServlet extends HttpServlet {
     private String url;
     TrainerService trainerService;
@@ -69,8 +69,8 @@ public class TrainerServlet extends HttpServlet {
             /*
             get promoId by id trainer in the session
              */
-            // int trainerId  = (int) session.getAttribute("trainerId");
-            int trainerId  = 4;
+            HttpSession session = request.getSession();
+            int trainerId  = (int) session.getAttribute("trainerId");
             this.promoService  = new PromoService();
             int promoId = this.promoService.getPromoOfTrainer(trainerId);
             System.out.println("promo id "+ promoId);
@@ -81,6 +81,14 @@ public class TrainerServlet extends HttpServlet {
             }
             request.setAttribute("studentsList", students);
             request.getRequestDispatcher("/trainer/trainerHome.jsp").forward(request, response);
+        }
+        else if(requestedUrl.equals(this.url+"TrainerServlet/AddBrief")){
+            HttpSession session = request.getSession();
+            int trainerId  = (int) session.getAttribute("trainerId");
+            this.promoService  = new PromoService();
+            int promoId = this.promoService.getPromoOfTrainer(trainerId);
+            request.setAttribute("promoId",promoId);
+            request.getRequestDispatcher("/trainer/addBrief.jsp").forward(request, response);
         }
     }
 
@@ -116,24 +124,36 @@ public class TrainerServlet extends HttpServlet {
                 case "AssignStudentToPromo"  -> {
                     int studentId = Integer.parseInt(request.getParameter("studentId"));
                     HttpSession session = request.getSession();
-//                    int trainerId  = (int) session.getAttribute("trainerId");
-                    int trainerId  = 4;
+                    int trainerId  = (int) session.getAttribute("trainerId");
                     // function that help us to get promo id of trainer by trainer id
                     this.promoService  = new PromoService();
                     int promoId = this.promoService.getPromoOfTrainer(trainerId);
                     System.out.println("promo id "+ promoId);
-
                     //funtion that get student by id
                     this.studentService = new StudentService();
                     Students student = this.studentService.getStudentById(studentId);
                     student.setPromoId(promoId);
-//                    System.out.println( "id of student that hjhfjaf "+student.getStudentId());
                     // function that update the promoId in the student table
                     String result = this.studentService.assignStudentPromo(student);
                     System.out.println(result);
 
 
                     System.out.println( "im in AssignStidentToPromo");
+                }
+                case "AddBrief"  -> {
+                    Briefs brief = new Briefs();
+                    HttpSession session = request.getSession();
+                    brief.setBriefTitle(request.getParameter("title"));
+                    brief.setDateStarted((request.getParameter("dates")));
+                    brief.setDateEnd((request.getParameter("datee")));
+                    brief.setDescription(request.getParameter("desc"));
+//                    brief.setTrainerId((int) session.getAttribute("trainerId"));
+                    brief.setTrainerId(4);
+                    brief.setPromoId(Integer.parseInt(request.getParameter("promoId")));
+                    System.out.println("brief :" + brief.toString());
+                    TrainerService trainerService = new TrainerService();
+                    String result = trainerService.addBrief(brief);
+                    if (result.equals("success")) System.out.println("result :" + result);
                 }
 
             }

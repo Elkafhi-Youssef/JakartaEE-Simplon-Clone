@@ -1,9 +1,9 @@
 package com.simplon.jakartaeeclonesimplon.controller;
 
-import com.simplon.jakartaeeclonesimplon.entity.Admins;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
-import com.simplon.jakartaeeclonesimplon.entity.Trainers;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Admins;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Promos;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Students;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Trainers;
 import com.simplon.jakartaeeclonesimplon.service.AdminService;
 import com.simplon.jakartaeeclonesimplon.service.PromoService;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
@@ -13,8 +13,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/AdminServlet")
 public class AdminServlet extends HttpServlet {

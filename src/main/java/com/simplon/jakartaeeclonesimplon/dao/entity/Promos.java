@@ -1,8 +1,7 @@
-package com.simplon.jakartaeeclonesimplon.entity;
+package com.simplon.jakartaeeclonesimplon.dao.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.util.Collection;
 
 @Entity
@@ -22,7 +21,7 @@ public class Promos {
     private Integer trainerId;
     @OneToMany(mappedBy = "promosByPromoId")
     private Collection<Briefs> briefsByPromoId;
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne()
     @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable =false)
     private Trainers trainersByTrainerId;
     @OneToMany(mappedBy = "promosByPromoId")

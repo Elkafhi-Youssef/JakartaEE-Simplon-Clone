@@ -1,12 +1,10 @@
 package com.simplon.jakartaeeclonesimplon.dao;
 
 import com.simplon.jakartaeeclonesimplon.config.EntityManagerConfig;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
-import com.simplon.jakartaeeclonesimplon.entity.Students;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Students;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO implements DAO<Students> {
@@ -123,9 +121,8 @@ public class StudentDAO implements DAO<Students> {
         try {
             EntityManager em = EntityManagerConfig.getInstance().getEntityManager();
             em.getTransaction().begin();
-            TypedQuery<Students> query = em.createQuery("SELECT s FROM Students s WHERE  s.promoId =4", Students.class);
-//            query.setParameter(1,promoId);
-//            query.executeUpdate();
+            TypedQuery<Students> query = em.createQuery("SELECT s FROM Students s WHERE  s.promoId = :promoId", Students.class);
+            query.setParameter("promoId",promoId);
             List<Students> StudentsList = query.getResultList();
             em.getTransaction().commit();
             return StudentsList;

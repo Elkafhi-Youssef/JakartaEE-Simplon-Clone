@@ -1,6 +1,6 @@
 package com.simplon.jakartaeeclonesimplon.controller;
 
-import com.simplon.jakartaeeclonesimplon.entity.Students;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Students;
 import com.simplon.jakartaeeclonesimplon.service.StudentService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

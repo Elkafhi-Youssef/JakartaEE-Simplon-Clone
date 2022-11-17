@@ -1,7 +1,7 @@
 package com.simplon.jakartaeeclonesimplon.service;
 
 import com.simplon.jakartaeeclonesimplon.dao.PromoDAO;
-import com.simplon.jakartaeeclonesimplon.entity.Promos;
+import com.simplon.jakartaeeclonesimplon.dao.entity.Promos;
 
 import java.util.ArrayList;
 import java.util.List;
